@@ -1,6 +1,5 @@
 <?php
 
-
 class AggregationBuilderTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -183,8 +182,10 @@ class AggregationBuilderTest extends PHPUnit_Framework_TestCase
     {
         $builder = $this->getBuilder();
         $builder->percentile('foo', 'bar', 50);
-        $this->assertEquals(['aggregations' => ['foo' => ['percentiles' => ['field' => 'bar', 'percents' => 50]]]],
-            $builder->toDSL());
+        $this->assertEquals(
+            ['aggregations' => ['foo' => ['percentiles' => ['field' => 'bar', 'percents' => 50]]]],
+            $builder->toDSL()
+        );
     }
 
     /**
@@ -194,8 +195,10 @@ class AggregationBuilderTest extends PHPUnit_Framework_TestCase
     {
         $builder = $this->getBuilder();
         $builder->percentileRanks('foo', 'bar', ['50']);
-        $this->assertEquals(['aggregations' => ['foo' => ['percentile_ranks' => ['field' => 'bar', 'values' => [50]]]]],
-            $builder->toDSL());
+        $this->assertEquals(
+            ['aggregations' => ['foo' => ['percentile_ranks' => ['field' => 'bar', 'values' => [50]]]]],
+            $builder->toDSL()
+        );
     }
 
     /**
